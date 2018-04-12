@@ -1,9 +1,22 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block title %}Создание поста{% endblock %}
 
 {% block body %}
+    <div class="container">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
 
-    {{ dump(post) }}
-
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Сохранить" class="btn">
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
